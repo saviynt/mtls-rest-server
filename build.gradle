@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'war'
+    id 'org.springframework.boot' version '3.1.2'
+    id 'io.spring.dependency-management' version '1.1.2'
+}
+
+group = 'org.example'
+version = '1.0.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation ('org.springframework.boot:spring-boot-starter-web') {
+        exclude(group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat')
+    }
+    compileOnly 'org.springframework.boot:spring-boot-starter-tomcat'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+//tasks.register('customFatJar', Jar) {
+//    manifest {
+//        attributes 'Main-Class': 'org.example.mtls.MtlsApplication'
+//    }
+//    archiveBaseName = 'all-in-one-jar'
+//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+//    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+//    with jar
+//}
+
+war {
+    archiveFileName = "${rootProject.name}.war"
+}

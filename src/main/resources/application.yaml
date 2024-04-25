@@ -1,0 +1,33 @@
+app:
+  k8s:
+    node-name: ${NODE_NAME:my-node}
+    node-ip-address: ${NODE_IP_ADDRESS:168.0.0.0}
+    pod-name-space: ${POD_NAME_SPACE:my-namespace}
+    pod-name: ${POD_NAME:my-pod}
+    pod-uid: ${POD_UID:saldjlasj739295}
+    pod-ip-address: ${POD_IP_ADDRESS:129.0.0.0}
+logging:
+  level:
+    org.apache.coyote.ajp: DEBUG
+server:
+  ssl:
+    enabled: true
+    key-store: "classpath:keystore.p12"
+    key-store-password: changeit
+    key-store-type: PKCS12
+    #key-store-provider:
+    client-auth: need
+    trust-store: "classpath:truststore.p12"
+    trust-store-password: changeit
+    trust-store-type: PKCS12
+
+
+#-Djavax.net.ssl.keyStore=/Users/dasmanas/git/mtls-poc/keystore.p12 -Djavax.net.ssl.keyStorePassword=changeit -Djavax.net.ssl.keyStoreType=PKCS12 -Djavax.net.ssl.clientAuth=required -Djavax.net.ssl.trustStore=/Users/dasmanas/git/mtls-poc/truststore.p12 -Djavax.net.ssl.trustStorePassword=changeit -Djavax.net.ssl.trustStoreType=PKCS12
+
+#  -Djavax.net.ssl.keyStore=/Users/dasmanas/git/mtls-poc/keystore.p12
+#  -Djavax.net.ssl.keyStorePassword=changeit
+#  -Djavax.net.ssl.keyStoreType=PKCS12
+#  -Djavax.net.ssl.clientAuth=required
+#  -Djavax.net.ssl.trustStore=/Users/dasmanas/git/mtls-poc/truststore.p12
+#  -Djavax.net.ssl.trustStorePassword=changeit
+#  -Djavax.net.ssl.trustStoreType=PKCS12
